@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Situationship Analyzer 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>💕 Situationship Analyzer 💕</h1>
+            <p>Decode the mysteries of your relationship through AI-powered analysis</p>
+        </div>
+
+        <div class="form-container">
+            <form id="analyzerForm">
+                <div class="form-section">
+                    <h3>📱 Chat Logs</h3>
+                    <div class="form-group">
+                        <label for="chatLogs">Paste your chat logs here:</label>
+                        <textarea id="chatLogs" name="chatLogs" placeholder="Paste your conversation here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Or upload a text file:</label>
+                        <div class="file-upload">
+                            <input type="file" id="chatFile" accept=".txt" onchange="handleFileUpload(event)">
+                            <span>📎 Choose File</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>💖 How much do you like this person?</h3>
+                    <div class="form-group">
+                        <select id="likeLevel" name="likeLevel">
+                            <option value="">Select your feelings...</option>
+                            <option value="1">1 - Barely know them</option>
+                            <option value="2">2 - Casual acquaintance</option>
+                            <option value="3">3 - Friendly</option>
+                            <option value="4">4 - Good friends</option>
+                            <option value="5">5 - Close friends</option>
+                            <option value="6">6 - Crush territory</option>
+                            <option value="7">7 - Definitely interested</option>
+                            <option value="8">8 - Strong feelings</option>
+                            <option value="9">9 - Falling in love</option>
+                            <option value="10">10 - Head over heels</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>✅ Pros</h3>
+                    <div class="form-group">
+                        <input type="text" id="proInput" placeholder="Add a pro (e.g., great sense of humor)">
+                        <button type="button" onclick="addTag('pros', 'proInput')" style="margin-top: 10px; padding: 8px 16px; background: #ff4757; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Pro</button>
+                        <div id="prosTags" class="tags-container"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>❌ Cons</h3>
+                    <div class="form-group">
+                        <input type="text" id="conInput" placeholder="Add a con (e.g., inconsistent communication)">
+                        <button type="button" onclick="addTag('cons', 'conInput')" style="margin-top: 10px; padding: 8px 16px; background: #ff4757; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Con</button>
+                        <div id="consTags" class="tags-container"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🌶️ Spice Level (1-10)</h3>
+                    <div class="form-group">
+                        <select id="spiceLevel" name="spiceLevel">
+                            <option value="">Select spice level...</option>
+                            <option value="1">1 - Sweet and innocent</option>
+                            <option value="2">2 - Slightly flirty</option>
+                            <option value="3">3 - Playful banter</option>
+                            <option value="4">4 - Moderate spice</option>
+                            <option value="5">5 - Balanced heat</option>
+                            <option value="6">6 - Getting steamy</option>
+                            <option value="7">7 - Hot and heavy</option>
+                            <option value="8">8 - Very spicy</option>
+                            <option value="9">9 - Extremely hot</option>
+                            <option value="10">10 - 🔥🔥🔥</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>💭 Thoughts about the person</h3>
+                    <div class="form-group">
+                        <select id="thoughts" name="thoughts">
+                            <option value="">Select your thoughts...</option>
+                            <option value="romantic">💕 Romantic feelings</option>
+                            <option value="platonic">🤝 Platonic friendship</option>
+                            <option value="confused">😵‍💫 Confused about feelings</option>
+                            <option value="casual">😊 Casual interest</option>
+                            <option value="serious">💍 Serious potential</option>
+                            <option value="complicated">😰 It's complicated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>💬 Communication Styles</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="roasting" name="communicationStyles" value="roasting">
+                            <label for="roasting">🔥 Roasting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="flirty" name="communicationStyles" value="flirty">
+                            <label for="flirty">😘 Flirty</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="respectful" name="communicationStyles" value="respectful">
+                            <label for="respectful">🤝 Respectful</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="freaky" name="communicationStyles" value="freaky">
+                            <label for="freaky">😈 Freaky</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disrespectful" name="communicationStyles" value="disrespectful">
+                            <label for="disrespectful">😤 Disrespectful</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="futureTalks" name="communicationStyles" value="futureTalks">
+                            <label for="futureTalks">🔮 Future talks</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="loveBombing" name="communicationStyles" value="loveBombing">
+                            <label for="loveBombing">💣 Love bombing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="oneSideDomination" name="communicationStyles" value="oneSideDomination">
+                            <label for="oneSideDomination">👑 One-side domination</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="powerCouple" name="communicationStyles" value="powerCouple">
+                            <label for="powerCouple">⚡ Power couple</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="playful" name="communicationStyles" value="playful">
+                            <label for="playful">🎮 Playful</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="supportive" name="communicationStyles" value="supportive">
+                            <label for="supportive">💪 Supportive</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mysterious" name="communicationStyles" value="mysterious">
+                            <label for="mysterious">🕵️ Mysterious</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="clingy" name="communicationStyles" value="clingy">
+                            <label for="clingy">🤗 Clingy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="distant" name="communicationStyles" value="distant">
+                            <label for="distant">🌌 Distant</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="jealous" name="communicationStyles" value="jealous">
+                            <label for="jealous">😠 Jealous</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🎯 Key Moments Analysis</h3>
+                    <div class="form-group">
+                        <label>Select which moments you'd like the AI to analyze from your chat logs:</label>
+                        <div class="checkbox-group" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="keyMoments" name="momentAnalysis" value="keyMoments" checked>
+                                <label for="keyMoments">🔑 Key Moments (Important turning points)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="funnyMoments" name="momentAnalysis" value="funnyMoments" checked>
+                                <label for="funnyMoments">😂 Funny Moments (Humor & banter)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="spicyMoments" name="momentAnalysis" value="spicyMoments" checked>
+                                <label for="spicyMoments">🌶️ Spicy Moments (Flirty & steamy)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="bestFlirty" name="momentAnalysis" value="bestFlirty" checked>
+                                <label for="bestFlirty">💋 Best Flirty Moments (Top romantic exchanges)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="emotionalMoments" name="momentAnalysis" value="emotionalMoments">
+                                <label for="emotionalMoments">💝 Emotional Moments (Deep conversations)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="conflictMoments" name="momentAnalysis" value="conflictMoments">
+                                <label for="conflictMoments">⚔️ Conflict Moments (Arguments & disagreements)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>📅 Relationship Timeline</h3>
+                    <div class="form-group">
+                        <label>How long have you been talking/seeing each other?</label>
+                        <select id="relationshipDuration" name="relationshipDuration">
+                            <option value="">Select duration...</option>
+                            <option value="lessThanWeek">Less than a week</option>
+                            <option value="fewWeeks">Few weeks</option>
+                            <option value="month">About a month</option>
+                            <option value="fewMonths">Few months</option>
+                            <option value="halfYear">6+ months</option>
+                            <option value="year">1+ year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How often do you communicate?</label>
+                        <select id="communicationFrequency" name="communicationFrequency">
+                            <option value="">Select frequency...</option>
+                            <option value="daily">Daily</option>
+                            <option value="fewTimesWeek">Few times a week</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="occasionally">Occasionally</option>
+                            <option value="rarely">Rarely</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🚩 Red Flag Detector</h3>
+                    <div class="form-group">
+                        <label>Select any concerning behaviors you've noticed:</label>
+                        <div class="checkbox-group" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ghosting" name="redFlags" value="ghosting">
+                                <label for="ghosting">👻 Ghosting/Disappearing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hotCold" name="redFlags" value="hotCold">
+                                <label for="hotCold">🌡️ Hot & Cold behavior</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="loveBombing" name="redFlags" value="loveBombing">
+                                <label for="loveBombing">💣 Love bombing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="controlling" name="redFlags" value="controlling">
+                                <label for="controlling">🎭 Controlling behavior</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="disrespectful" name="redFlags" value="disrespectful">
+                                <label for="disrespectful">😤 Disrespectful comments</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="inconsistent" name="redFlags" value="inconsistent">
+                                <label for="inconsistent">🔄 Inconsistent communication</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="jealous" name="redFlags" value="jealous">
+                                <label for="jealous">😠 Jealous/possessive</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="avoidant" name="redFlags" value="avoidant">
+                                <label for="avoidant">🏃 Avoidant of serious talks</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="gaslighting" name="redFlags" value="gaslighting">
+                                <label for="gaslighting">💡 Gaslighting</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="breadcrumbing" name="redFlags" value="breadcrumbing">
+                                <label for="breadcrumbing">🍞 Breadcrumbing</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="analyze-btn">
+                    🔮 Analyze My Situationship 🔮
+                </button>
+            </form>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>🔮 Analyzing your situationship with AI magic...</p>
+        </div>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
