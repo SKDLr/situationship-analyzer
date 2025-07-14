@@ -1,4 +1,15 @@
-c
+//GETTING KEY FROM .TXT FILE
+const fs = require('fs');
+
+// Read the API key from the file
+const API_KEY = fs.readFileSync('api-key.txt', 'utf8').trim();
+
+// Use the API key in your script
+console.log(API_KEY);  // This will print the API key from the file
+
+
+
+
 // Floating hearts animation
 function createHearts() {
     const heartsContainer = document.getElementById('hearts');
