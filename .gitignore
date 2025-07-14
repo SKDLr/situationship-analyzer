@@ -1,2 +1,2 @@
-# Ignore API key file to prevent exposing it in the repository
+# Ignore API key file to prevent exposing it in the repo
 api-key.txt
