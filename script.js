@@ -1,6 +1,4 @@
-// Configuration - Replace with your actual API key
-const API_KEY = 'AIzaSyAw_ShPCqm24zDaaIHml0Gbi6M4cPeoo6Q'; // Replace this with your actual API key
-
+c
 // Floating hearts animation
 function createHearts() {
     const heartsContainer = document.getElementById('hearts');
