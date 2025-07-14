@@ -1,0 +1,2 @@
+# Ignore API key file to prevent exposing it in the repository
+api-key.txt
