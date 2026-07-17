@@ -63,19 +63,6 @@ An AI-powered web application that analyzes relationship conversations and situa
 
 ---
 
-## 📷 Screenshots
-
-> Add screenshots of your application here.
-
-```
-screenshots/
-├── home.png
-├── analysis.png
-└── report.png
-```
-
----
-
 ## 🎯 Future Improvements
 
 - User authentication
