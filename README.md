@@ -85,6 +85,4 @@ This project is intended for **entertainment and educational purposes only**. AI
 
 This project is licensed under the MIT License.
 
----
 
-Made with ❤️ using Google Gemini AI.
